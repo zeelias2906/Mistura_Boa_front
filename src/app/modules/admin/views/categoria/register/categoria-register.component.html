@@ -1,0 +1,49 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container form-display">
+    <header class="py-5">
+        <h3>Categoria</h3>
+        <span>{{action == 'CREATE' ? 'Adicionar': action == 'EDIT' ? 'Editar': 'Visualizar'}}  categoria</span>
+    </header>
+    <section class="section-form">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="form-group col-md-12 col-lg-12">
+                    <label for="nome">Nome*</label>
+                    <input type="text" formControlName="nome" placeholder="Lanches" maxlength="255">
+                    <span class="text-danger" *ngIf="isValidForm('nome')">*Campo de preenchimento obrigatório </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 col-lg-10">
+                    <label for="descricao">Descrição*</label>
+                    <input type="text" formControlName="descricao" placeholder="Lanches feitos com ingredientes de primeira qualidade" maxlength="255">
+                    <span class="text-danger" *ngIf="isValidForm('descricao')">*Campo de preenchimento obrigatório </span>
+                </div>
+                <div class="form-group col-md-12 col-lg-2">
+                    <label for="icone">Icone</label>
+                    <input type="text" formControlName="icone" placeholder="Selecionar um emoji" maxlength="2" (focus)="mostrarPicker = true" >
+                    <div #emojiPicker *ngIf="mostrarPicker">
+                        <emoji-mart (emojiSelect)="adicionarEmoji($event)"></emoji-mart>
+                    </div>
+                </div>
+            </div>
+            <div class="row buttons">
+                <div class="form-group col-md-12 col-lg-2 mb-2">
+                    <button (click)="voltar()" class="btn-outline-brown">Voltar</button>
+                </div>
+                <div class="form-group col-md-12 col-lg-2 text-end">
+                    <button (click)="salvar()" class="btn-fill-brown"> {{isCreate ? 'Salvar': 'Editar'}}</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+

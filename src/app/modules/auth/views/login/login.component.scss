@@ -1,0 +1,113 @@
+div{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: var(--cream-color);
+
+  .form-area{
+    width: 40%;
+    border-radius: 1rem;
+    padding: 3rem;
+    margin-top: 3rem;
+    color: var(--dark-brown);
+
+    .password{
+      position: relative;
+
+      .eye{
+        font-size: 1.5rem;
+        position: absolute;
+        width: auto;
+        bottom: 0.1rem;
+        right: 0.5rem;
+        color: var(--brown)
+      }
+
+      .eye:hover{
+        color: var(--cream-color)
+      }
+    }
+
+    input{
+      padding: 1rem;
+      background-color: var(--dark-brown) !important;
+      margin-top: 0.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--dark-brown);
+      outline: none;
+      color: var(--cream-color);
+    }
+
+  }
+
+  .btn-area{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+
+    .btn-link{
+      color: var(--dark-brown);
+    }
+
+    .btn-link:hover{
+      color: var(--brown);
+    }
+
+    .btn-login{
+      padding: 0.5rem;
+      background-color: var(--dark-brown);
+      border: 2px solid var(--dark-brown);
+      outline: none;
+      border-radius: 0.5rem;
+      color: var(--cream-color);
+    }
+
+    .btn-login:hover{
+      background-color: var(--brown);
+    }
+
+    .btn-criar-conta{
+      padding: 0.5rem;
+      background-color: var(--cream-color);
+      border: 2px solid var(--dark-brown);
+      outline: none;
+      border-radius: 0.5rem;
+      color: var(--dark-brown);
+    }
+
+    .btn-criar-conta:hover{
+      color: var(--brown);
+      background-color: var(--white-color);
+    }
+
+  }
+
+
+}
+
+.btn-voltar{
+  position: absolute;
+  padding: 0.25rem;
+  background-color: var(--dark-brown);
+  color: var(--cream-color);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  margin-left: 1rem;
+  top: 3rem;
+}
+
+.error{
+  text-align: center;
+  color: red;
+}
+
+@media screen and (max-width: 900px) {
+  div{
+    .form-area {
+      width: 100%;
+    }
+  }
+}

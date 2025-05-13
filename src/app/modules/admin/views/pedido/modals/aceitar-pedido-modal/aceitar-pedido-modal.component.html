@@ -1,0 +1,40 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<div class="modal-body">
+    <h4>Produtos do pedido</h4>
+    <section>
+        <div class="table-section">
+            <div class="list-itens">
+                <div class="card-item" *ngFor="let produtosPedido of produtosPedido">
+                    <div class="header-card">
+                        <img [src]="loadImg(produtosPedido.produto.imgProduto)" alt="Imagem Produto">
+                        <div class="info">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div>
+                                    <h5>{{produtosPedido.produto.nome}}</h5>
+                                    <p>{{produtosPedido.produto.descricao}}</p>
+                                </div>
+                                <span class="valor-prod">{{produtosPedido.produto.valor| currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        <label class="form-label">Observação</label>
+                        <textarea class="form-control col-12" [rows]="4" [(ngModel)]="produtosPedido.observacao" disabled=""></textarea>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="btn-area">
+        <button type="button" class="btn btn-fechar" (click)="voltar()">Fechar</button>
+        <button type="button" class="btn btn-confirm" (click)="confirm()">Confirmar</button> 
+    </div>
+</div>

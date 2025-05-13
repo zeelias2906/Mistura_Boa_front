@@ -1,0 +1,57 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Produtos</h3>
+        <nav>
+            <button class="btn-back" (click)="goBack()">Início</button>
+            <button class="btn-add" (click)="goToAdd()">Adicionar Produto</button>
+        </nav>
+    </header>
+    <section>
+        <div class="search row">
+            <input type="text" class="col-xs-12 col-md-9" placeholder="Digite o nome do produto" [(ngModel)]="filter.nome" (keyup)="search()" maxlength="200">
+            <button class="btn-search col-xs-12 col-md-2" (click)="search()">Pesquisar</button>
+        </div>
+
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let produto of produtos">
+                        <td>{{produto.nome}}</td>
+                        <td>{{produto.descricao}}</td>
+                        <td>{{produto.categoria.nome}}</td>
+                        <td>{{produto.dataExclusao ? 'Inativo' : 'Ativo'}}</td>
+                        <td>
+                            <button class=btn-view ngbTooltip="Visualizar" (click)="goToView(produto.id!)"><i class="bi bi-eye"></i></button>
+                            <button class="btn-power" [ngClass]="produto.dataExclusao ? 'inativo' : 'ativo'"
+                                ngbTooltip="{{ !produto.dataExclusao ? 'Inativar' : 'Ativar' }}"
+                                (click)="changeStatus(produto.id!, produto.dataExclusao)"
+                                >
+                                <i class="bi bi-power"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+

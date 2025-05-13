@@ -1,0 +1,122 @@
+.card-item{
+    color: var(--dark-brown);
+    background-color: var(--cream-color);
+    margin: 1rem 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem;
+    border-radius: 0.8rem;
+
+    &.finalizado{
+        background-color: #c2c2c2; 
+    }
+
+    .header{
+        margin-bottom: 1rem;
+        > div{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            >span{
+                font-size: small;
+                opacity: 0.8;
+            }
+        }
+
+        > p{
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            color: var(--cream-color);
+            border-radius: 3rem;
+            font-weight: bold;
+            background-color: var(--dark-brown);
+        }
+
+    }
+
+    .body{
+        .recusado{
+            width: 100%;
+            margin: 1rem 0;
+            >label{
+                display: block;
+                font-weight: bold;
+            }
+            >textarea{
+                opacity: 0.9;
+                width: 100%;   
+                color: var(--dark-brown);
+                padding: 0.5rem 1rem;
+                border-radius: 1rem;
+                resize: none;
+                outline: none;
+                background-color: #e2e2e2;
+            }
+        }
+
+        .pagamento{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            p{
+                margin: 0;
+
+            }
+        }
+
+        >span{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .endereco{
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            color: var(--cream-color);
+            background-color: var(--brown);
+            margin-bottom: 1rem;
+            p{
+                margin: 0;
+            }
+            input{
+                background-color: transparent;
+                border: none;
+                color: var(--cream-color);
+                font-weight: bold;
+            }
+        }
+
+        > p{
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .footer{
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+
+            .btn-cancel{
+                background-color: transparent;
+                border: 1px solid var(--dark-brown);
+                color: var(--dark-brown);
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+            .btn-view{
+                background-color: var(--dark-brown);
+                color: var(--cream-color);
+                border: 1px solid var(--dark-brown);
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
+        
+
+    }
+
+}

@@ -1,0 +1,55 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Meu carrinho</h3>
+        <nav>
+            <button class="btn-back" (click)="goBack()">Início</button>
+            <!-- <button class="btn-add" (click)="goToAdd()">Novo Endereço</button> -->
+        </nav>
+    </header>
+    <section>
+        <div class="table-section">
+            <div class="list-itens">
+                <p class="text-center" *ngIf="!produtosCarrinho || produtosCarrinho.length==0">
+                    Carrinho vazio, adicione produtos ao carrinho!
+                </p>
+                    <div class="card-item" *ngFor="let produtoCarrinho of produtosCarrinho">
+                        <img [src]="loadImg(produtoCarrinho.produto.imgProduto)" alt="Imagem Produto">
+                        <div class="info">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div>
+                                    <h5>{{produtoCarrinho.produto.nome}}</h5>
+                                    <p>{{produtoCarrinho.produto.descricao}}</p>
+                                </div>
+                                <span class="valor-prod">{{produtoCarrinho.produto.valor| currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</span>
+                            </div>
+                            <div class="my-3">
+                                <label class="form-label">Observação</label>
+                                <textarea class="form-control col-12" [rows]="4" [(ngModel)]="produtoCarrinho.observacao" disabled=""></textarea>
+                            </div>
+                        </div>
+                        <button class="btn-delete"
+                            ngbTooltip="Retirar produto do carrinho"
+                            (click)="excluir(produtoCarrinho.id!)"
+                            >
+                            <i class="bi bi-trash"></i>
+                        </button>                    
+                    </div>
+            </div>
+        </div>
+        <div class="footer-area" *ngIf="produtosCarrinho && produtosCarrinho.length>0">
+            <p>Valor do pedido {{carrinho.valorTotal | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</p>
+            <button class="btn-final" (click)="finalizarPedido()">Finalizar pedido</button>
+        </div>
+    </section>
+</main>
+
+

@@ -1,0 +1,33 @@
+.modal-body{
+    text-align: center;
+}
+
+.icon{
+    text-align: center;
+    padding: 2rem;
+
+    >span{
+       font-size: 6rem;
+       color: green; 
+    }
+
+    >p{
+        font-size: x-large;
+        font-weight: bold;
+    }
+}
+
+.message {
+    white-space: pre-line;
+}
+
+button{
+    border: 1px solid var(--dark-brown);
+    color: var(--dark-brown);
+
+    &:hover{
+        background-color: var(--brown);
+        color: var(--cream-color);
+        border-color: var(--brown);
+    }
+}

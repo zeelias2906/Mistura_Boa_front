@@ -1,0 +1,35 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="logar()" class="form-area">
+      <h2 class="text-center">Entrar na sua conta</h2>
+      <div class="row mt-3 mb-3">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required formControlName="email" placeholder="E-mail">
+      </div>
+      <div class="row mb-3 password">
+        <label for="senhaTxt">Senha</label>
+        <input [type]="visible ? 'text' : 'password'" id="senhaTxt" required formControlName="senha"
+          (keyup.enter)="logar()" placeholder="Senha">
+        <i *ngIf="!visible" class="bi bi-eye eye" (click)="changeVisibility()"></i>
+        <i *ngIf="visible" class="bi bi-eye-slash eye" (click)="changeVisibility()"></i>
+      </div>
+      <div class="row" *ngIf="messageError!=''">
+        <p class="error">{{messageError}}</p>
+      </div>
+      <div class="btn-area">
+        <a class="btn-link" routerLink="/login/reset-password">Esqueceu a senha</a>
+        <button class="btn-login col-6">Entrar</button>
+        <button class="btn-criar-conta col-6" (click)="criarConta()">Criar conta</button>
+      </div>
+    </form>
+  </div>
+  <a class="btn-voltar" routerLink="/">Voltar</a>

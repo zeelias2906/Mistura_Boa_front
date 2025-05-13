@@ -1,0 +1,52 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Usuários</h3>
+        <nav>
+            <button class="btn-back" (click)="goBack()">Início</button>
+        </nav>
+    </header>
+    <section>
+        <div class="search row">
+            <input type="text" class="col-xs-12 col-md-9" placeholder="Digite o nome da pessoa" [(ngModel)]="filter.nome" (keyup)="search()" maxlength="200">
+            <button class="btn-search col-xs-12 col-md-2" (click)="search()">Pesquisar</button>
+        </div>
+
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo usuário</th>
+                        <th>CPF</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{usuario.pessoa.nome}}</td>
+                        <td>{{getTipoUsuario(usuario.roleUsuario)}}</td>
+                        <td>
+                            <input type="text" inputmode="numeric" mask="000.000.000-00" placeholder="000.000.000-00" id="cpf" readonly [ngModel]="usuario.pessoa.cpf">
+                        </td>
+                        <td>
+                            <button class="btn-view" ngbTooltip="Alterar tipo usuário" *ngIf="usuario.roleUsuario != 'ADMIN'" (click)="changeTipoUsuario(usuario.id, usuario.roleUsuario)">
+                                <i class="bi bi-arrow-left-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+

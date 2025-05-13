@@ -1,0 +1,55 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Categorias</h3>
+        <nav>
+            <button class="btn-back" (click)="goBack()">Início</button>
+            <button class="btn-add" (click)="goToAdd()">Adicionar Categoria</button>
+        </nav>
+    </header>
+    <section>
+        <div class="search row">
+            <input type="text" class="col-xs-12 col-md-9" placeholder="Digite o nome da categoria" [(ngModel)]="filter.nome" (keyup)="search()" maxlength="200">
+            <button class="btn-search col-xs-12 col-md-2" (click)="search()">Pesquisar</button>
+        </div>
+
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Icone</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let categoria of categorias">
+                        <td>{{categoria.icone ? categoria.icone : '🚫'}}</td>
+                        <td>{{categoria.nome}}</td>
+                        <td>{{categoria.dataExclusao ? 'Inativo' : 'Ativo'}}</td>
+                        <td>
+                            <button class=btn-view ngbTooltip="Visualizar" (click)="goToView(categoria.id!)"><i class="bi bi-eye"></i></button>
+                            <button class="btn-power" [ngClass]="categoria.dataExclusao ? 'inativo' : 'ativo'"
+                                ngbTooltip="{{ !categoria.dataExclusao ? 'Inativar' : 'Ativar' }}"
+                                (click)="changeStatus(categoria.id!, categoria.dataExclusao)"
+                                >
+                                <i class="bi bi-power"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+

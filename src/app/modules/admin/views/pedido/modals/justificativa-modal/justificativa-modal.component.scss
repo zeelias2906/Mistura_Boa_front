@@ -1,0 +1,51 @@
+.modal-body{
+    background-color: var(--cream-color);
+    color: var(--dark-brown);
+    h4{
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    div > label{
+        color: var(--dark-brown);
+    }
+
+    
+    div > textarea{
+        color: var(--dark-brown);
+        border: 1px solid var(--dark-brown);
+        resize: none;
+        outline: none;
+    }
+
+    .btn-area{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+
+        .btn-cancel{
+            padding: 0.4rem 1rem;
+            color: var(--dark-brown);
+            background-color: transparent;
+            border: 1px solid var(--dark-brown);
+            border-radius: 0.5rem;
+
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+
+        .btn-confirm{
+            padding: 0.4rem 1rem;
+            color: var(--cream-color);
+            background-color: var(--dark-brown);
+            border: 1px solid var(--dark-brown);
+            border-radius: 0.5rem;
+
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    }
+
+}

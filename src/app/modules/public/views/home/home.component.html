@@ -1,0 +1,43 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container">
+    <div class="welcome">
+        <h4>Bem-vindo ao Mistura boa!</h4>
+        <p>Sabores autênticos e preparado com muito amor</p>
+    </div>
+    <div class="categorias">
+        <h4>Categorias</h4>
+        <div class="card-list">
+            <div class="card" *ngFor="let categoria of categorias" (click)="selectedCategoria(categoria.id!)" [ngClass]="{'selected': this.idCategoriaSelected==categoria.id}">
+                <span>{{categoria.icone ? categoria.icone : '🚫'}}</span>
+                <p>{{categoria.nome}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="produtos">
+        <h4>Produtos</h4>
+        <div class="card-list">
+            <div *ngIf="this.produtos?.length==0">
+                Não há produtos para essa categoria
+            </div>
+            <div class="card" *ngFor="let produto of produtos" (click)="openDetailsProduct(produto.id!)">
+                <img [src]="loadImg(produto.imgProduto)" alt="Imagem Produto">
+                <div class="info">
+                    <h5>{{produto.nome}}</h5>
+                    <p>{{produto.descricao}}</p>
+                </div>
+                <div class="valor">
+                    <span>{{produto.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<app-float-cart-button></app-float-cart-button>

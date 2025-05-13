@@ -1,0 +1,12 @@
+<div class="modal-body">
+    <h4>Justificativa</h4>    
+    <div>
+        <label class="form-label">Escreva uma mensagem informando o motivo do cancelado para o cliente</label>
+        <textarea class="form-control col-12" [rows]="4" placeholder="Ex: Produto Indisponível" [(ngModel)]="justificativa"></textarea>
+    </div>
+    
+    <div class="btn-area">
+        <button type="button" class="btn-cancel" (click)="voltar()">Voltar</button> 
+        <button type="button" class="btn-confirm" (click)="confirm()">Confirmar</button>
+    </div>
+</div>

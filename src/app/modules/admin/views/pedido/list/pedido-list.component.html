@@ -1,0 +1,33 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Pedidos de Hoje</h3>
+        <nav>
+            <button class="btn-back" routerLink="/">Início</button>
+            <button class="btn-add" (click)="goToHistory()">Histórico</button>
+        </nav>
+    </header>
+    <section class="list">
+        <section class="tabs">
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.CANCELADO == statusPedido}" (click)="changeTab(pedidoStatus.CANCELADO)">Cancelado</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.AGUARDANDO_CONFIRMACAO == statusPedido}" (click)="changeTab(pedidoStatus.AGUARDANDO_CONFIRMACAO)">Aguardando</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.EM_PREPARACAO == statusPedido}" (click)="changeTab(pedidoStatus.EM_PREPARACAO)">Em Preparação</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.ENVIADO == statusPedido}" (click)="changeTab(pedidoStatus.ENVIADO)">Enviado</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.A_SER_RETIRADO == statusPedido}" (click)="changeTab(pedidoStatus.A_SER_RETIRADO)">A Ser Retirado</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.FINALIZADO == statusPedido}" (click)="changeTab(pedidoStatus.FINALIZADO)">Finalizado</div>
+        </section>
+        <section>
+            <app-tab-pedido [statusPedido]="statusPedido"></app-tab-pedido>
+        </section>
+    </section>
+</main>
+
+

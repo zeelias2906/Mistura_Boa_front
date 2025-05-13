@@ -1,0 +1,72 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+
+<main class="container list-section">
+    <header>
+        <h3>Meu Pedidos</h3>
+        <nav>
+            <button class="btn-back" routerLink="/">Início</button>
+        </nav>
+    </header>
+    <section>
+        <div class="table-section">
+            <div class="list-itens">
+                <p class="text-center" *ngIf="!pedidos || pedidos.length==0">
+                    Você ainda não fez nenhum pedido!
+                </p>
+                <div class="card-item" *ngFor="let pedido of pedidos" [ngClass]="{'finalizado': pedido.statusPedido == 'FINALIZADO' || pedido.statusPedido == 'RECUSADO' || pedido.statusPedido == 'CANCELADO'}">
+                    <div class="header">
+                        <div>
+                            <h6>Número do pedido <br>{{pedido.numeroPedido}}</h6>
+                            <span>Pedido feito em: <br>{{pedido.dataPedido | date : "dd/MM/yyyy HH:mm" }}</span>
+                        </div>
+                        <p>{{getStatus(pedido.statusPedido)}}</p>
+                    </div>
+                    <div class="body">
+                        <div class="recusado" *ngIf="pedido.justificativa">
+                            <label>Motivo do pedido ser recusado ou cancelado</label>
+                            <textarea [rows]="4" [(ngModel)]="pedido.justificativa" disabled></textarea>
+                        </div>
+                        <div class="pagamento">
+                            <p>Forma de Pagamento: <br><b>{{getTipoPagamento(pedido.formaPagamento)}}</b></p>
+                            <p *ngIf="pedido.precisaTroco">Precisa de troco: <br><b>{{pedido.precisaTroco ? 'Sim' : 'Não'}}</b></p>
+                            <p *ngIf="pedido.valorTroco">Troco para: <br><b>{{pedido.valorTroco | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</b></p>
+                        </div>
+                        <div class="endereco">
+                            <div *ngIf="pedido.endereco">
+                                <p>
+                                    Endereço para entrega:<br><b>
+                                    {{pedido.endereco.logradouro}} -
+                                    {{pedido.endereco.bairro}}, 
+                                    n° {{pedido.endereco.numero}}</b>
+                                </p>
+                                <p>
+                                    Telefone para contato:<br>
+                                    <input [ngModel]="pedido.usuario.pessoa.telefone" mask="(00) 00000-0000" disabled />
+                                </p>
+                                
+                            </div>
+                            <p *ngIf="!pedido.endereco">Retirar no estabelecimento</p>
+                        </div>
+                        <span *ngIf="pedido.dataFechamentoPedido">Pedido finalizado em: {{pedido.dataFechamentoPedido | date : "dd/MM/yyyy HH:mm" }}</span>
+                        <p>Valor Final: <b>{{pedido.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</b></p>
+                        <div class="footer">
+                            <button *ngIf="pedido.statusPedido == 'AGUARDANDO_CONFIRMACAO'" class="btn btn-cancel" (click)="cancelPedido(pedido.id!)">Cancelar pedido</button>
+                            <button class="btn btn-view" (click)="viewsProdutos(pedido.id!, pedido.produtosPedido!)">Ver produtos</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+

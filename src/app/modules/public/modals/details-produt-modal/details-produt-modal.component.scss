@@ -1,0 +1,81 @@
+.modal-body{
+    padding: 2rem;
+    background-color: var(--cream-color);
+    border-radius: 1rem;
+
+    .area-product{
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        img{
+            width: 15rem;
+            height: 15rem;
+            object-fit: cover;
+            align-self: center;
+            border-radius: 1rem;
+        }
+
+        h6{
+            color: var(--dark-brown);
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        p{
+            color: var(--dark-brown);
+            margin: 0;
+        }
+
+        span{
+            color: var(--dark-brown);
+            margin-top: 0.5rem;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        div > label{
+            color: var(--dark-brown);
+        }
+
+        
+        div > textarea{
+            color: var(--dark-brown);
+            border: 1px solid var(--dark-brown);
+            resize: none;
+            outline: none;
+        }
+
+    }
+
+    .btn-area{
+        display: flex;
+        justify-content: space-between;
+
+        .btn-cancel{
+            padding: 0.4rem 1rem;
+            color: var(--dark-brown);
+            background-color: transparent;
+            border: 1px solid var(--dark-brown);
+            border-radius: 0.5rem;
+
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+
+        .btn-confirm{
+            padding: 0.4rem 1rem;
+            color: var(--cream-color);
+            background-color: var(--dark-brown);
+            border: 1px solid var(--dark-brown);
+            border-radius: 0.5rem;
+
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    }
+
+
+}

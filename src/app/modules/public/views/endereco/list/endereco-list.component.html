@@ -1,0 +1,46 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Meus Endereços</h3>
+        <nav>
+            <button class="btn-back" (click)="goBack()">Início</button>
+            <button class="btn-add" (click)="goToAdd()">Novo Endereço</button>
+        </nav>
+    </header>
+    <section>
+        <div class="table-section">
+            <table>
+                <tbody>
+                    <p *ngIf="!enderecos || enderecos.length==0">
+                        Você ainda não cadastrou nenhum endereço
+                    </p>
+                    <tr *ngFor="let endereco of enderecos">
+                        <td>
+                            <h3>{{endereco.nome}}</h3>
+                            <p>{{endereco.logradouro}} - {{endereco.bairro}}, n° {{endereco.numero}}</p>
+                        </td>
+                        <td>
+                            <button class=btn-view ngbTooltip="Visualizar" (click)="goToView(endereco.id!)"><i class="bi bi-eye"></i></button>
+                            <button class="btn-delete"
+                                ngbTooltip="Excluir endereço"
+                                (click)="excluir(endereco.id!)"
+                                >
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+

@@ -1,0 +1,115 @@
+main{
+  background-color: var(--cream-color);
+}
+
+div{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: var(--cream-color);
+  
+    .row{
+      > div{
+        display: flex;
+        flex-direction: column;
+      }
+  
+    }
+  
+    .form-area{
+      width: 80%;
+      border-radius: 1rem;
+      padding: 3rem;
+      margin-top: 3rem;
+      color: var(--dark-brown);
+      
+  
+      .password{
+        position: relative;
+  
+        .eye{
+          font-size: 1.5rem;
+          position: absolute;
+          width: auto;
+          bottom: 0.1rem;
+          right: 1.3rem;
+          color: var(--brown)
+        }
+  
+        .eye:hover{
+          color: var(--cream-color)
+        }
+      }
+  
+      input{
+        padding: 1rem;
+        background-color: var(--dark-brown) !important;
+        margin-top: 0.5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--dark-brown);
+        outline: none;
+        color: var(--cream-color);
+      }
+
+      // input[type='date']:not(:focus):not(value){
+      //   color: #6d6765;
+      // }
+
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(1991%) hue-rotate(178deg) brightness(94%) contrast(105%);
+      }
+  
+    }
+  
+    .btn-area{
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+  
+      .btn-criar-conta{
+        padding: 0.5rem;
+        background-color: var(--dark-brown);
+        border: 2px solid var(--dark-brown);
+        outline: none;
+        border-radius: 0.5rem;
+        color: var(--cream-color);
+      }
+  
+      .btn-criar-conta:hover{
+        background-color: var(--brown);
+        border: 2px solid var(--brown);
+      }
+  
+    }
+  
+  
+  }
+  
+  .btn-voltar{
+    position: absolute;
+    padding: 0.25rem;
+    background-color: var(--dark-brown);
+    color: var(--cream-color);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    margin-left: 1rem;
+    top: 3rem;
+  }
+  
+  .error{
+    text-align: center;
+    color: red;
+  }
+  
+
+@media screen and (max-width: 900px) {
+    div{
+      .form-area {
+        width: 100%;
+      }
+    }
+}

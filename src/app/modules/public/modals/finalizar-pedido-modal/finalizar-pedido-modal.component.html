@@ -1,0 +1,71 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<div class="modal-body">
+    <h4>Finalizar pedido</h4>
+    <form [formGroup]="form">    
+        <section class="address-area">
+            <h6>Selecionar o endereço para entrega</h6>
+            <a (click)="goToEndereco()">Adicionar endereço</a>
+            <div *ngFor="let endereco of enderecos">
+                <input type="radio" name="enderecoId" [value]="endereco.id" formControlName="enderecoId">
+                <div>
+                    <p>{{endereco.nome}}</p>
+                    <span>{{endereco.logradouro}} - {{endereco.bairro}}, n° {{endereco.numero}}</span>
+                </div>
+            </div>
+            <div>
+                <input type="radio" name="enderecoId" [value]="0" formControlName="enderecoId">
+                <div>
+                    <p>Retirar no estabelecimento</p>
+                </div>
+            </div>
+        </section>
+        <section class="payment-area">
+            <h6>Selecionar forma de pagamento</h6>
+            <ng-select 
+                    placeholder="Dinheiro"
+                    [items]="tiposPagamentosOptions" 
+                    (change)="handleFormaPagamento()"
+                    bindLabel="description" 
+                    bindValue="value" 
+                    formControlName="formaPagamento">
+            </ng-select>
+            <span class="text-danger" *ngIf="isValidForm('formaPagamento')">*É necessário selecionar a forma de pagamento</span>
+            <div *ngIf="isCash">
+                <label for="precisaTroco">Precisa de troco?</label>
+                <ng-select 
+                    placeholder="Sim"
+                    [items]="yesOrNoOptions" 
+                    bindLabel="description" 
+                    bindValue="value" 
+                    (change)="handlePrecisaTroco()"
+                    formControlName="precisaTroco">
+                </ng-select>
+                <span class="text-danger" *ngIf="isValidForm('precisaTroco')">*Você deve informar se vai precisar de troco ou não</span>
+            </div>
+            <div *ngIf="needChange">
+                <label for="valorTroco">Troco para qual valor?</label>
+                <input  type="text" formControlName="valorTroco" placeholder="R$ 15,00" currencyMask maxlength="15"
+                        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', precision: 2 }"
+                    />
+                <span class="text-danger" *ngIf="isValidForm('valorTroco')">*Você deve informar para qual valor deve ser o troco</span>
+            </div>
+        </section>
+    </form>
+    <section class="price-area">
+        <p *ngIf="!isTaxaFree">Taxa de Entrega<b>R$ 3,00</b></p>
+        <hr *ngIf="!isTaxaFree">
+        <p>Valor final do pedido<b>{{valorFinalPedido | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</b></p>
+    </section>
+    <div class="btn-area">
+        <button type="button" class="btn-cancel" (click)="voltar()">Voltar</button> 
+        <button type="button" class="btn-confirm" (click)="confirm()">Finalizar Pedido</button>
+    </div>
+</div>

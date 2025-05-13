@@ -1,0 +1,137 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container list-section">
+    <header>
+        <h3>Histórico de pedidos</h3>
+        <nav>
+            <button class="btn-back" routerLink="/administrador/pedido">Voltar</button>
+        </nav>
+    </header>
+
+    <form class="row">
+        <div class="col-xs-12 col-lg-5">
+            <div class="dp-hidden position-absolute">
+                <div class="input-group">
+                    <input
+                        name="datepicker"
+                        class="form-control"
+                        ngbDatepicker
+                        #datepicker="ngbDatepicker"
+                        [autoClose]="'outside'"
+                        (dateSelect)="onDateSelection($event)"
+                        [displayMonths]="2"
+                        [dayTemplate]="t"
+                        outsideDays="hidden"
+                        [maxDate]="maxSelectableDate"
+                        [startDate]="fromDate!"
+                        tabindex="-1"
+                    />
+                    <ng-template #t let-date let-focused="focused" let-disabled="disabled">
+                        <span
+                            class="custom-day"
+                            [class.focused]="focused"
+                            [class.range]="isRange(date)"
+                            [class.faded]="isHovered(date) || isInside(date)"
+                            [class.disabled]="disabled"
+                            (mouseenter)="hoveredDate = date"
+                            (mouseleave)="hoveredDate = null"
+                        >
+                            {{ date.day }}
+                        </span>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="input-group">
+                <input
+                    #dpFromDate
+                    class="form-control"
+                    placeholder="Data Inicial"
+                    name="dpFromDate"
+                    readonly
+                    [value]="formatter.format(fromDate)"
+                    (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
+            </div>
+        </div>
+        <div class="col-xs-12 col-lg-5">
+            <div class="input-group">
+                <input
+                    #dpToDate
+                    class="form-control"
+                    placeholder="Data Final"
+                    name="dpToDate"
+                    readonly
+                    [value]="formatter.format(toDate)"
+                    (input)="toDate = validateInput(toDate, dpToDate.value)"
+                />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="datepicker.toggle()" type="button"></button>
+            </div>
+        </div>
+        <div class="area-btn col-xs-12 col-2">
+            <button class="btn btn-filter" (click)="filtrar()">Filtrar</button>
+        </div>
+    </form>
+    
+    <div class="table-section">
+        <div class="list-itens">
+            <p class="text-center" *ngIf="!pedidos || pedidos.length==0">
+                Nenhum pedido encontrado!
+            </p>
+            <div class="card-item" *ngFor="let pedido of pedidos" [ngClass]="{'finalizado': pedido.statusPedido == 'FINALIZADO' || pedido.statusPedido == 'RECUSADO' || pedido.statusPedido == 'CANCELADO'}">
+                <div class="header">
+                    <div>
+                        <h6>Número do pedido <br>{{pedido.numeroPedido}}</h6>
+                        <span>Pedido feito em: <br>{{pedido.dataPedido | date : "dd/MM/yyyy HH:mm" }}</span>
+                    </div>
+                    <button class="btn btn-print" (click)="imprimirPedido(pedido.id!)">Imprimir pedido</button>
+    
+                    <p>{{getStatus(pedido.statusPedido)}}</p>
+                </div>
+                <div class="body">
+                    <div class="recusado" *ngIf="pedido.justificativa">
+                        <label>Motivo do pedido ser recusado ou cancelado</label>
+                        <textarea [rows]="4" [(ngModel)]="pedido.justificativa" disabled></textarea>
+                    </div>
+                    <div class="pagamento">
+                        <p>Forma de Pagamento: <br><b>{{getTipoPagamento(pedido.formaPagamento)}}</b></p>
+                        <p *ngIf="pedido.precisaTroco">Precisa de troco: <br><b>{{pedido.precisaTroco ? 'Sim' : 'Não'}}</b></p>
+                        <p *ngIf="pedido.valorTroco">Troco para: <br><b>{{pedido.valorTroco | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</b></p>
+                    </div>
+                    <div class="endereco">
+                        <p>
+                            Cliente: <br>
+                            <b>{{pedido.usuario.pessoa.nome}}</b>
+                        </p>
+                        <div *ngIf="pedido.endereco">
+                            <p>
+                                Endereço para entrega:<br><b>
+                                {{pedido.endereco.logradouro}} -
+                                {{pedido.endereco.bairro}}, 
+                                n° {{pedido.endereco.numero}}</b>
+                            </p>
+                        </div>
+                        <p>
+                            Telefone para contato:<br>
+                            <input [ngModel]="pedido.usuario.pessoa.telefone" mask="(00) 00000-0000" disabled />
+                        </p>
+                        <p *ngIf="!pedido.endereco">Retirar no estabelecimento</p>
+                    </div>
+                    <span *ngIf="pedido.dataFechamentoPedido">Pedido finalizado em: {{pedido.dataFechamentoPedido | date : "dd/MM/yyyy HH:mm" }}</span>
+                    <p>Valor Final: <b>{{pedido.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR'}}</b></p>
+                    <div class="footer">
+                        <button class="btn btn-view" (click)="visualizarProdutos(pedido.id!, pedido.produtosPedido!)">Ver produtos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

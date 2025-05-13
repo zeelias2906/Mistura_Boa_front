@@ -1,0 +1,102 @@
+section{
+    display: flex;
+    flex-direction: column;
+}
+.list-itens{
+    min-height: 48vh;
+    flex: 1;
+    margin-bottom: 3rem;
+    .card-item{
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0.3rem;
+        border: none;
+        padding: 1rem;
+        margin: 1rem 0;
+        display: flex;
+        background-color: var(--cream-color);
+        flex-direction: row;
+        gap: 1rem;
+        color: var(--dark-brown);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        flex-wrap: wrap;
+        img{
+            object-fit: cover;
+            width: 14rem;
+            height: 14rem;
+            border-radius: 1rem;
+        }
+        .info{
+            flex-wrap: wrap;
+            flex: 1;
+            h5{
+                font-weight: bold;
+            }
+            p{
+                opacity: 0.9;
+            }
+
+            div > label{
+                font-weight: 400;
+                color: var(--dark-brown);
+            }
+    
+            
+            div > textarea{
+                color: var(--dark-brown);
+                resize: none;
+                outline: none;
+            }
+
+            .valor-prod{
+                background-color: var(--dark-brown);
+                color: var(--cream-color);
+                align-self: center;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                font-weight: 600;
+
+            }
+     
+        }
+
+        .btn-delete{
+            border: none;
+            background-color: transparent;
+            color: red;
+            font-size: larger;
+        }
+    }
+
+}
+
+.footer-area{
+    p{
+        text-align: end;
+        margin: 0;
+        padding: 0;
+        color: var(--dark-brown);
+        opacity: 0.9;
+    }
+
+    .btn-final{
+        width: 100%;
+        padding: 0.6rem 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        color: var(--cream-color);
+        font-weight: 600;
+        background-color: var(--brown);
+
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+}
+
+@media screen and (max-width: 600px){
+    
+    .list-itens > .card-item{
+        flex-direction: column;
+    }
+}

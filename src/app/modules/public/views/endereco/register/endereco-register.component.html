@@ -1,0 +1,64 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container form-display">
+    <header class="py-5">
+        <h3>Endereço</h3>
+        <span>{{action == 'CREATE' ? 'Adicionar': action == 'EDIT' ? 'Editar': 'Visualizar'}}  endereço</span>
+    </header>
+    <section class="section-form">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="nome">Nome do endereco*</label>
+                    <input type="text" formControlName="nome" placeholder="Ex: Casa, Trabalho" maxlength="255">
+                    <span class="text-danger" *ngIf="isValidForm('nome')">*Campo de preenchimento obrigatório</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 col-lg-9">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" formControlName="logradouro" placeholder="Rua, Avenida" maxlength="255">
+                    <span class="text-danger" *ngIf="isValidForm('logradouro')">*Campo de preenchimento obrigatório</span>
+                </div>
+                <div class="form-group col-md-12 col-lg-3">
+                    <label for="numero">Número*</label>
+                    <input type="text" formControlName="numero" placeholder="170" maxlength="5" mask="0*">
+                    <span class="text-danger" *ngIf="isValidForm('numero')">*Campo de preenchimento obrigatório</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 col-lg-5">
+                    <label for="bairro">Bairro*</label>
+                    <input type="text" formControlName="bairro" placeholder="Rive" maxlength="255">
+                    <span class="text-danger" *ngIf="isValidForm('bairro')">*Campo de preenchimento obrigatório</span>
+                </div>
+                <div class="form-group col-md-12 col-lg-7">
+                    <label for="pontoReferencia">Ponto de Referência</label>
+                    <input type="text" formControlName="pontoReferencia" placeholder="Em frente a igreja" maxlength="255">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" formControlName="complemento" placeholder="Sala, Apartamento 403" maxlength="255">
+                </div>
+            </div>
+            <div class="row buttons">
+                <div class="form-group col-md-12 col-lg-2 mb-2">
+                    <button (click)="voltar()" class="btn-outline-brown">Voltar</button>
+                </div>
+                <div class="form-group col-md-12 col-lg-2 text-end">
+                    <button (click)="salvar()" class="btn-fill-brown"> {{isCreate ? 'Salvar': 'Editar'}}</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+

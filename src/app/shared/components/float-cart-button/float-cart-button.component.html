@@ -1,0 +1,7 @@
+<div class="floating-button" *ngIf="showButton">
+    <a routerLink="/carrinho">
+        <i class="bi bi-cart4"></i>
+    </a>
+    <span class="badge" *ngIf="quantidade > 0">{{ quantidade }}</span>
+</div>
+  

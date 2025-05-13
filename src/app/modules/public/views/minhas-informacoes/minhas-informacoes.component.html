@@ -1,0 +1,60 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: white">Carregando...</p></ngx-spinner
+>
+
+<main class="container form-display">
+    <header>
+        <h4>Minhas informações</h4>
+    </header>
+    <section class="section-form">
+        <form [formGroup]="form">
+            <div formGroupName="pessoa">
+                <div class="row">
+                    <div class="form-group col-md-12 col-lg-12">
+                        <label for="nome">Nome*</label>
+                        <input type="text" formControlName="nome" placeholder="Nome" maxlength="255">
+                        <span class="text-danger" *ngIf="isValidSubForm('nome')">*Campo de preenchimento obrigatório </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12 col-lg-4">
+                        <label for="cpf">CPF*</label>
+                        <input type="text" inputmode="numeric" mask="000.000.000-00" placeholder="000.000.000-00" id="cpf" required formControlName="cpf">
+                        <span class="text-danger" *ngIf="isValidSubForm('cpf')">*Campo de preenchimento obrigatório </span>
+                    </div>
+                    <div class="form-group col-md-12 col-lg-4">
+                        <label for="dataNascimento">Data de nascimento*</label>
+                        <input type="date" id="dataNascimento" required formControlName="dataNascimento" >
+                        <span class="text-danger" *ngIf="isValidSubForm('dataNascimento')">*Campo de preenchimento obrigatório </span>
+                    </div>
+                    <div class="form-group col-md-12 col-lg-4">
+                        <label for="telefone">Telefone*</label>
+                        <input type="text" inputmode="numeric" mask="(00) 00000-0000" placeholder="(22) 99956-8813" id="telefone" required formControlName="telefone">
+                        <span class="text-danger" *ngIf="isValidSubForm('telefone')">*Campo de preenchimento obrigatório </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="email">E-mail*</label>
+                    <input type="text" id="email" required formControlName="email">
+                    <span class="text-danger" *ngIf="isValidForm('email')">*Campo de preenchimento obrigatório </span>
+                </div>
+            </div>
+
+            <div class="row buttons">
+                <div class="form-group col-md-12 col-lg-2 mb-2">
+                    <button routerLink="/" class="btn-outline-brown">Voltar</button>
+                </div>
+                <div class="form-group col-md-12 col-lg-2 text-end">
+                    <button (click)="salvar()" class="btn-fill-brown"> {{isCreate ? 'Salvar': 'Editar'}}</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>

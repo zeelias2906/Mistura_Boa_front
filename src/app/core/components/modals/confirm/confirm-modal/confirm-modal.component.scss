@@ -1,0 +1,45 @@
+.modal-body{
+    text-align: center;
+}
+
+.icon{
+    text-align: center;
+    padding: 2rem;
+
+    >span{
+       font-size: 6rem;
+       color: blue; 
+    }
+
+    >p{
+        font-size: x-large;
+        font-weight: bold;
+    }
+}
+
+button{
+    border: 1px solid var(--dark-brown);
+    color: var(--dark-brown);
+
+    &:hover{
+        background-color: var(--brown);
+        color: var(--cream-color);
+        border-color: var(--brown);
+    }
+}
+
+.message {
+    white-space: pre-line;
+}
+
+.cancel{
+    background-color: var(--dark-brown);
+    border: none;
+    color: var(--cream-color);
+
+    &:hover{
+        background-color: var(--brown);
+        color: var(--cream-color);
+        
+    }
+}

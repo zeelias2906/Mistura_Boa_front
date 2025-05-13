@@ -1,0 +1,42 @@
+<header>
+    <div class="header">
+        <div class="menu">
+            <button class="btn-menu d-md-none" (click)="toggleMenu()" *ngIf="isLogado && isAdmin"><i class="bi bi-list"></i></button>
+            <h3 routerLink="/">Mistura Boa</h3>
+            <nav *ngIf="isLogado && (isGerente || isAdmin)" class="nav-links" [ngClass]="{'open': openMenu}">
+                <ul>
+                    <li routerLink="/administrador/categoria">Categorias</li>
+                    <li routerLink="/administrador/produto">Produtos</li>
+                    <li routerLink="/administrador/pedido">Pedidos</li>
+                    <li routerLink="/administrador/usuario" *ngIf="isAdmin">Usuários</li>
+                </ul>
+            </nav>
+        </div>
+        <div class="to-login" routerLink="/login" *ngIf="!isLogado">
+            <i class="bi bi-person"></i>
+            <p>Fazer login</p>
+        </div>
+        <div class="has-login" *ngIf="isLogado">
+            <i class="bi bi-cart2" routerLink="/carrinho"></i>
+            <div [ngbTooltip]="tooltipComponente"  [closeDelay]="2000">
+                <i class="bi bi-person"></i>
+                <p>{{usuario?.name}}</p>
+            </div>
+        </div>
+    
+        <ng-template class="tooltip"  #tooltipComponente>
+            <ul>
+                <li routerLink="/pedidos">Meus Pedidos</li>
+                <li routerLink="/minhas-informacoes">Minhas Informações</li>
+                <li routerLink="/endereco">Meus Endereços</li>
+                <li (click)="logout()">Sair</li>
+            </ul>
+        </ng-template>
+    </div>
+    <div class="search">
+        <input #searchBox type="text" placeholder="Pesquise por um produto" (input)="search(searchBox.value)">
+        <i class="bi bi-search"></i>
+    </div>    
+</header>
+
+
