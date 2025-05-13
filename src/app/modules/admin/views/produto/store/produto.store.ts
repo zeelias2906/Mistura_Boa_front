@@ -39,6 +39,10 @@ export class ProdutoStore {
     return this.http.post<any>(this.baseUrl + 'search', filter)
   }
 
+  searchActive(filter: FilterSimple): Observable<ProdutoInterface[]> {
+    return this.http.post<any>(this.baseUrl + 'search-active', filter)
+  }
+
   searchGridProdCat(filter: FilterSimple): Observable<ProdutoInterface[]> {
     return this.http.post<any>(this.baseUrl + 'search-grid', filter)
   }

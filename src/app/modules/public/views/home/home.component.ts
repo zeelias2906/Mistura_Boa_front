@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
 
     this.spinner.show()
     this.filter.idsCategoria.push(idCategoria)
-    this.produtoStore.search(this.filter).subscribe({
+    this.produtoStore.searchActive(this.filter).subscribe({
       next: (data) =>{
         this.produtos = data
         this.idCategoriaSelected = idCategoria

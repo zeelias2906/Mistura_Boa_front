@@ -42,6 +42,7 @@ export class CarrinhoService {
   }
 
   restaurarCarrinho(): void {
+    if(!this.authTokenService.getIdUsuario()) return
     this.carrinhoStore.getByIdUsaurio(this.authTokenService.getIdUsuario()).subscribe({
       next: (data) =>{
         this.adicionarItem(data.produtosCarrinho)
