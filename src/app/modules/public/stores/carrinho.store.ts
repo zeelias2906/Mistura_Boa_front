@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 })
 export class CarrinhoStore {
 
-    private readonly baseUrl = `${environment.url}carrinho/`
+    private readonly baseUrl = `${environment.apiUrl}carrinho/`
 
 
     constructor(private http: HttpClient) { }

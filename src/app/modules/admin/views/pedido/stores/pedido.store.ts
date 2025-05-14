@@ -12,7 +12,7 @@ import { PedidoFilterInterface } from "../model/pedido-filter.interface";
 })
 export class PedidoStore {
 
-    private readonly baseUrl = `${environment.url}pedido/`
+    private readonly baseUrl = `${environment.apiUrl}pedido/`
 
 
     constructor(private http: HttpClient) { }
