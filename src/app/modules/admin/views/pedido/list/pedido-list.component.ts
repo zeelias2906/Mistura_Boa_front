@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterSimple } from '../../../../../shared/models/filters/filter-simple.interface';
-import { PedidoStore } from '../stores/pedido.store';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthTokenService } from '../../../../../shared/services/auth-token.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmModalComponent } from '../../../../../core/components/modals/confirm/confirm-modal/confirm-modal.component';
-import { PedidoInterface } from '../model/pedido.interface';
-import { ErrorModalComponent } from '../../../../../core/components/modals/error/error-modal.component';
-import { getStatusPedidoEnum, StatusPedidoEnum } from '../../../../../shared/models/enums/status-pedido.enum';
-import { getTipoPagamentoEnum, TipoPagamentoEnum } from '../../../../../shared/models/enums/tipo-pagamento.enum';
-import { JustificativaModalComponent } from '../modals/justificativa-modal/justificativa-modal.component';
+import { StatusPedidoEnum } from '../../../../../shared/models/enums/status-pedido.enum';
+import { PedidoAguardandoService } from '../../../../../shared/services/pedido-aguardando.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pedido-list',
@@ -20,17 +13,24 @@ import { JustificativaModalComponent } from '../modals/justificativa-modal/justi
 export class PedidoListComponent  implements OnInit{
   statusPedido: StatusPedidoEnum = StatusPedidoEnum.AGUARDANDO_CONFIRMACAO
   pedidoStatus = StatusPedidoEnum
+  qtdPedidosAguardando = 0;
+  private subscription!: Subscription;
 
   constructor(
-    private pedidoStore: PedidoStore, 
     private route: Router, 
-    private spinner: NgxSpinnerService, 
-    private authTokenService: AuthTokenService,
+    private pedidoAguardandoService: PedidoAguardandoService,
     private modalService: NgbModal
   ){}
 
   ngOnInit(): void {
     this.statusPedido = StatusPedidoEnum.AGUARDANDO_CONFIRMACAO
+    this.subscription = this.pedidoAguardandoService.pedidosMudou.subscribe(pedidos => {
+      this.qtdPedidosAguardando = pedidos.length;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   goToHistory(){
@@ -39,16 +39,6 @@ export class PedidoListComponent  implements OnInit{
 
   changeTab(status: StatusPedidoEnum){
     this.statusPedido = status
-  }
-
-  private _openModal(modalOptions: any, message: string, action: any){
-    const modalRef = this.modalService.open(modalOptions, { backdrop: 'static', keyboard: false })
-    modalRef.componentInstance.message = message
-    modalRef.result.then(
-      (result) => {
-        action
-      }
-    )
   }
 
 }

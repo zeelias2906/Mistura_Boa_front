@@ -4,6 +4,8 @@ import { InfoUsuario } from '../../../shared/models/info-usuario.interface';
 import { SearchService } from '../../../shared/services/search.service';
 import { CarrinhoService } from '../../../shared/services/carrinho.service';
 import { Router } from '@angular/router';
+import { PedidoAguardandoService } from '../../../shared/services/pedido-aguardando.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +17,16 @@ export class HeaderComponent implements OnInit {
   isLogado: boolean = false
   usuario!: InfoUsuario | null
   nomeProduto!: string
+  private subscription!: Subscription;
+  qtdPedidosAguardando = 0;
 
   constructor(
     private authTokenService: AuthTokenService, 
     private searchService: SearchService, 
     private carrinhoService: CarrinhoService, 
     private route: Router,
+    private pedidoAguardandoService: PedidoAguardandoService,
+    
   ){}
 
   get isAdmin(){
@@ -38,6 +44,14 @@ export class HeaderComponent implements OnInit {
     this.authTokenService.usuario$.subscribe(usuario => {
       this.usuario = usuario;
     });
+
+    this.subscription = this.pedidoAguardandoService.pedidosMudou.subscribe(pedidos => {
+      this.qtdPedidosAguardando = pedidos.length;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   logout(){

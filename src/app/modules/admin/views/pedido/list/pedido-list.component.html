@@ -18,7 +18,10 @@
     <section class="list">
         <section class="tabs">
             <div class="tab-item" [ngClass]="{'selected': pedidoStatus.CANCELADO == statusPedido}" (click)="changeTab(pedidoStatus.CANCELADO)">Cancelado</div>
-            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.AGUARDANDO_CONFIRMACAO == statusPedido}" (click)="changeTab(pedidoStatus.AGUARDANDO_CONFIRMACAO)">Aguardando</div>
+            <div class="tab-item" [ngClass]="{'selected': pedidoStatus.AGUARDANDO_CONFIRMACAO == statusPedido}" (click)="changeTab(pedidoStatus.AGUARDANDO_CONFIRMACAO)">
+                Aguardando
+                <span *ngIf="qtdPedidosAguardando > 0" class="dot">{{qtdPedidosAguardando}}</span>
+            </div>
             <div class="tab-item" [ngClass]="{'selected': pedidoStatus.EM_PREPARACAO == statusPedido}" (click)="changeTab(pedidoStatus.EM_PREPARACAO)">Em Preparação</div>
             <div class="tab-item" [ngClass]="{'selected': pedidoStatus.ENVIADO == statusPedido}" (click)="changeTab(pedidoStatus.ENVIADO)">Enviado</div>
             <div class="tab-item" [ngClass]="{'selected': pedidoStatus.A_SER_RETIRADO == statusPedido}" (click)="changeTab(pedidoStatus.A_SER_RETIRADO)">A Ser Retirado</div>

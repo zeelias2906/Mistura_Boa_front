@@ -7,7 +7,9 @@
                 <ul>
                     <li routerLink="/administrador/categoria">Categorias</li>
                     <li routerLink="/administrador/produto">Produtos</li>
-                    <li routerLink="/administrador/pedido">Pedidos</li>
+                    <li routerLink="/administrador/pedido">Pedidos
+                        <span *ngIf="qtdPedidosAguardando > 0" class="dot">{{qtdPedidosAguardando}}</span>
+                    </li>
                     <li routerLink="/administrador/usuario" *ngIf="isAdmin">Usuários</li>
                 </ul>
             </nav>

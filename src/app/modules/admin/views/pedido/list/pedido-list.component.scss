@@ -15,6 +15,7 @@
         padding: 1rem;
         width: 100%;
         margin-top: 0.3rem;
+        position: relative;
         // border-radius: 0.5rem;
         // border: 1px solid var(--dark-brown);
 
@@ -24,6 +25,20 @@
         }
 
     }
+}
+
+.dot {
+    height: 1.2rem;
+    width: 1.2rem;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    color: var(--cream-color);
+    font-size: small;
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    text-align: center;
 }
 
 @media screen and (max-width: 500px){

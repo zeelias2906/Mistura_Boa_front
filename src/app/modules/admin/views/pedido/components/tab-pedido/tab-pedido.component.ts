@@ -15,6 +15,7 @@ import { AceitarPedidoModalComponent } from '../../modals/aceitar-pedido-modal/a
 import { ProdutosPedidoModalComponent } from '../../../../../public/modals/produtos-pedido-modal/produtos-pedido-modal.component';
 import { SucessModalComponent } from '../../../../../../core/components/modals/sucess/sucess-modal.component';
 import { ImpressaoStore } from '../../stores/impressao.store';
+import { PedidoAguardandoService } from '../../../../../../shared/services/pedido-aguardando.service';
 
 @Component({
   selector: 'app-tab-pedido',
@@ -28,11 +29,10 @@ export class TabPedidoComponent implements OnInit, OnChanges {
 
   constructor(
     private pedidoStore: PedidoStore, 
-    private route: Router, 
     private spinner: NgxSpinnerService, 
-    private authTokenService: AuthTokenService,
     private modalService: NgbModal,
-    private impressaoStore: ImpressaoStore
+    private impressaoStore: ImpressaoStore,
+    private pedidoAguardandoService: PedidoAguardandoService,
   ){}
 
   ngOnInit(): void {
@@ -65,6 +65,7 @@ export class TabPedidoComponent implements OnInit, OnChanges {
     modalRef.result.then(
       (result) => {
         this._loadPedidos()
+        this.pedidoAguardandoService.removerItem(idPedido)
       }
     )
   }
