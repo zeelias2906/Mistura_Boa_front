@@ -6,6 +6,7 @@ import { CarrinhoService } from '../../../shared/services/carrinho.service';
 import { Router } from '@angular/router';
 import { PedidoAguardandoService } from '../../../shared/services/pedido-aguardando.service';
 import { Subscription } from 'rxjs';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   nomeProduto!: string
   private subscription!: Subscription;
   qtdPedidosAguardando = 0;
+  timeoutId: any;
 
   constructor(
     private authTokenService: AuthTokenService, 
@@ -68,6 +70,15 @@ export class HeaderComponent implements OnInit {
 
   search(value: string){
     this.searchService.setSearchTerm(value)
+  }
+
+  abrirTooltip(t: NgbTooltip) {
+    clearTimeout(this.timeoutId);
+    t.open();
+  }
+  
+  fecharTooltip(t: NgbTooltip) {
+    this.timeoutId = setTimeout(() => t.close(), 2000); // 2 segundos de delay
   }
 
   private _validateToken(){

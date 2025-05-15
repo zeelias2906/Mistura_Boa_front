@@ -153,13 +153,17 @@ header{
   font-size: small;
   position: absolute;
   top: -0.4rem;
-  right: -0.5rem;
+  right: 4.4rem;
   text-align: center;
 
   &.open{
     bottom: 1.8rem;
     top: auto;
     right: 1rem;
+  }
+
+  &.isGerente{
+    right: -0.5rem;
   }
 
 }
