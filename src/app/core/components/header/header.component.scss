@@ -156,15 +156,52 @@ header{
   right: 4.4rem;
   text-align: center;
 
+  &.isGerente{
+    right: -0.5rem;
+  }
+
   &.open{
+    bottom: 3.7rem;
+    top: auto;
+    right: 1rem;
+  }
+
+  &.open.isGerente{
     bottom: 1.8rem;
     top: auto;
     right: 1rem;
   }
 
-  &.isGerente{
-    right: -0.5rem;
+}
+
+.tooltip-menu {
+border-radius: 0.5rem;
+padding: 0.5rem;
+font-size: 14px;
+max-width: 200px;
+position: absolute;
+background-color: rgb(41, 41, 41);
+color: var(--cream-color);
+top: 3rem;
+right: 1rem;
+display: inline-block;
+z-index: 1000;
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li{
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgb(100, 100, 100);
+    cursor: pointer;
   }
+
+  li:last-child {
+    border-bottom: none;
+  }
+}
 
 }
 

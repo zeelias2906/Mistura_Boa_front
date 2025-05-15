@@ -6,7 +6,6 @@ import { CarrinhoService } from '../../../shared/services/carrinho.service';
 import { Router } from '@angular/router';
 import { PedidoAguardandoService } from '../../../shared/services/pedido-aguardando.service';
 import { Subscription } from 'rxjs';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +20,7 @@ export class HeaderComponent implements OnInit {
   private subscription!: Subscription;
   qtdPedidosAguardando = 0;
   timeoutId: any;
+  tooltipAberto = false;
 
   constructor(
     private authTokenService: AuthTokenService, 
@@ -72,13 +72,15 @@ export class HeaderComponent implements OnInit {
     this.searchService.setSearchTerm(value)
   }
 
-  abrirTooltip(t: NgbTooltip) {
-    clearTimeout(this.timeoutId);
-    t.open();
+  abrirTooltipManual() {
+    clearTimeout(this.timeoutId);  // Cancela o fechamento agendado
+    this.tooltipAberto = true;
   }
   
-  fecharTooltip(t: NgbTooltip) {
-    this.timeoutId = setTimeout(() => t.close(), 2000); // 2 segundos de delay
+  fecharTooltipManual() {
+    this.timeoutId = setTimeout(() => {
+      this.tooltipAberto = false;
+    }, 2000); // Fecha após 2 segundos
   }
 
   private _validateToken(){
