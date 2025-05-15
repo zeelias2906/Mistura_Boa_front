@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://mistura-boa-back-i23x.onrender.com/mistura-boa/api'
 };
