@@ -38,6 +38,7 @@
                     formControlName="formaPagamento">
             </ng-select>
             <span class="text-danger" *ngIf="isValidForm('formaPagamento')">*É necessário selecionar a forma de pagamento</span>
+            <span *ngIf="!isCash">O entregador levará a maquininha para o recebimento.</span>
             <div *ngIf="isCash">
                 <label for="precisaTroco">Precisa de troco?</label>
                 <ng-select 

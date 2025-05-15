@@ -34,15 +34,6 @@ export class PedidoAguardandoService {
     this.pedidosMudou.next(this.pedidos);
   }
 
-  // getQtdPedidoAguardando(){
-  //   if(!this.authTokenService.getIdUsuario()) return
-  //   this.pedidoStore.getAllTodayByStatus(StatusPedidoEnum.AGUARDANDO_CONFIRMACAO).subscribe({
-  //     next: (data) => {
-  //       this.adicionarItem(data)
-  //     }
-  //   })
-  // }
-
   stopPolling() {
     this.subscription?.unsubscribe();
   }

@@ -20,6 +20,7 @@ import { ProdutosPedidoModalComponent } from '../../modals/produtos-pedido-modal
 export class PedidoComponent implements OnInit {
   idUsuario!: number
   pedidos!: PedidoInterface[]
+  private intervalId: any;
 
   constructor(
     private authTokenService: AuthTokenService,
@@ -39,20 +40,14 @@ export class PedidoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.idUsuario = this.authTokenService.getIdUsuario()
-    this.spinner.show()
-    this.pedidoStore.getByIdUsaurio(this.idUsuario).subscribe({
-      next: (data) =>{
-        this.pedidos = data
-        this.spinner.hide()
-      },
-      error: (err) => {
-        this.spinner.hide()
-        const errorMessage = err?.error?.message ?? 'Erro inesperado';
-        this._openModal(ErrorModalComponent, errorMessage, {}) 
-      }
-    })
+    this._loadPedidos()
+    this._startAutoRefresh();
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
+  }
+
 
   viewsProdutos(idPedido: number,produtosPedido: ProdutoPedidoInterface[]) {
     const modalRef = this.modalService.open(ProdutosPedidoModalComponent, { backdrop: 'static', keyboard: false })
@@ -70,6 +65,28 @@ export class PedidoComponent implements OnInit {
       (reason) => {}
       )
       
+  }
+
+  private _startAutoRefresh() {
+    this.intervalId = setInterval(() => {
+      this._loadPedidos();
+    }, 60000);
+  }
+
+  private _loadPedidos(){
+    this.idUsuario = this.authTokenService.getIdUsuario()
+    this.spinner.show()
+    this.pedidoStore.getByIdUsaurio(this.idUsuario).subscribe({
+      next: (data) =>{
+        this.pedidos = data
+        this.spinner.hide()
+      },
+      error: (err) => {
+        this.spinner.hide()
+        const errorMessage = err?.error?.message ?? 'Erro inesperado';
+        this._openModal(ErrorModalComponent, errorMessage, {}) 
+      }
+    })
   }
 
   private _cancelByClient(idPedido: number){

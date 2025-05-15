@@ -160,7 +160,7 @@ export class TabPedidoComponent implements OnInit, OnChanges {
         this.pedidoStore.changeStatusPedido(idPedido, StatusPedidoEnum.FINALIZADO).subscribe({
           next: () =>{
             this.spinner.hide()
-            this._openModal(SucessModalComponent, "Pedido finalizado com sucessor", {}) 
+            this._openModal(SucessModalComponent, "Pedido finalizado com sucesso", {}) 
             this._loadPedidos()
           },
           error: (err) =>{

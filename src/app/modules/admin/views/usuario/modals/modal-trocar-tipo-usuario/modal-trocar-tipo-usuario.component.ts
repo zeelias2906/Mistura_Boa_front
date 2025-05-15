@@ -49,7 +49,6 @@ export class ModalTrocarTipoUsuarioComponent implements OnInit {
 
 
   confirm(){
-    debugger
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return
