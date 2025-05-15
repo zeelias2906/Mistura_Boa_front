@@ -10,7 +10,7 @@ import { FilterSimple } from "../../../../../shared/models/filters/filter-simple
 })
 export class ProdutoStore {
 
-  private readonly baseUrl = `${environment.apiUrl}produto/`
+  private readonly baseUrl = `${environment.apiUrl}/produto/`
 
 
   constructor(private http: HttpClient) { }

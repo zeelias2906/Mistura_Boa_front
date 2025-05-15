@@ -11,7 +11,7 @@ import { FilterSimple } from "../../../../../shared/models/filters/filter-simple
 })
 export class UsuarioStore {
 
-  private readonly baseUrl = `${environment.apiUrl}usuario/`
+  private readonly baseUrl = `${environment.apiUrl}/usuario/`
 
 
   constructor(private http: HttpClient) { }

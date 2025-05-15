@@ -10,7 +10,7 @@ import { EnderecoInterface } from "../models/endereco.interface"
 })
 export class EnderecoStore {
 
-  private readonly baseUrl = `${environment.apiUrl}endereco/`
+  private readonly baseUrl = `${environment.apiUrl}/endereco/`
 
 
   constructor(private http: HttpClient) { }

@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 export class ImpressaoStore {
 
-    private readonly baseUrl = `${environment.apiUrl}impressao-pedido/`
+    private readonly baseUrl = `${environment.apiUrl}/impressao-pedido/`
 
     constructor(private http: HttpClient){}
 

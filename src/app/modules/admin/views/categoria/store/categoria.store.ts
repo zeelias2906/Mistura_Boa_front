@@ -8,7 +8,7 @@ import { FilterSimple } from "../../../../../shared/models/filters/filter-simple
 @Injectable()
 export class CategoriaStore {
 
-  private readonly baseUrl = `${environment.apiUrl}categoria/`
+  private readonly baseUrl = `${environment.apiUrl}/categoria/`
 
 
   constructor(private http: HttpClient) { }
