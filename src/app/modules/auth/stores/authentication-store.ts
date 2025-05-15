@@ -6,7 +6,7 @@ import { environment } from "../../../environments/environment";
 @Injectable()
 export class AuthenticationStore {
 
-  private readonly baseUrl = `${environment.apiUrl}auth/`
+  private readonly baseUrl = `${environment.apiUrl}/auth/`
 
   constructor(private http: HttpClient) { }
 
